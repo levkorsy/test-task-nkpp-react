@@ -1,10 +1,16 @@
 import React from 'react'
 import {Item} from "../Item/Item";
 
-export const ItemGroup = () =>{
+export const ItemGroup = (props) =>{
     return(
         <div className="item-group-wrapper">
-<Item/>
+            <h5 className="item-group-title">{props.itemGroup[0].groupTitle}</h5>
+            {
+                props.itemGroup.map((item, index)=>{
+                    return <Item dollarRate={props.dollarRate} item={item} key={index}/>
+                })
+            }
+
 </div>    )
 }
 
