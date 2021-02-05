@@ -1,0 +1,55 @@
+$titleColor: #556c6d;
+.item-group-title {
+  font-size: 25px;
+  font-weight: 600;
+  text-align: center;
+  background-color: $titleColor;
+  border: 2px solid $titleColor;
+  border-radius: 10px 10px 0px 0px;
+  margin-top: -2px;
+  margin-left: -2px;
+  margin-right: -2px;
+  padding: 15px 0px;
+  color: white;
+}
+
+.main-catalog-wrapper {
+  position: relative;
+  border: 1px solid #dedddd;
+  padding: 20px;
+  border-radius: 10px;
+  flex: 1;
+  margin: 50px;
+  max-width: 30%;
+  height: fit-content;
+  min-width: 700px;
+}
+
+.price-up {
+  color: red;
+}
+
+.price-down {
+  color: green;
+}
+
+tfoot {
+  font-weight: bold;
+}
+
+.reset-btn {
+  position: absolute;
+  color: white;
+  right: 25px;
+  top: 25px;
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.reset-btn:hover {
+  opacity: 0.8;
+}
+
+.reset-btn:focus, .reset-btn:active, {
+  outline: none !important;  // Used important for rewrite bootstrap class
+}

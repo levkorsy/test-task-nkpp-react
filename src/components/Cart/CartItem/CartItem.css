@@ -1,0 +1,41 @@
+.price-up {
+    color: red;
+}
+
+.price-down {
+    color: green;
+}
+
+td {
+    text-align: center;
+    vertical-align: middle;
+
+}
+
+.cart-item-price {
+    font-size: 0.9em;
+    padding: 0.5rem .3rem;
+    min-width: 100px;
+}
+
+.animate-tr {
+    max-height: 0px;
+    animation: trAnimate 1s linear;
+}
+
+@keyframes trAnimate {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.amount-msg {
+    opacity: 0.3;
+    font-size: 12px;
+}

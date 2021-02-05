@@ -1,0 +1,76 @@
+.item-wrapper {
+    display: flex;
+}
+
+.title {
+    flex: 7;
+    padding: 5px 10px;
+    background-color: white;
+}
+
+.price, .add-item {
+    flex: 1;
+    text-align: center;
+    align-self: baseline;
+}
+
+.price {
+    min-width: 100px;
+}
+
+.price-up {
+    color: red;
+}
+
+.price-down {
+    color: green;
+}
+
+.item-title {
+    width: 80%;
+}
+
+.stock {
+    flex: 2;
+    align-self: baseline;
+    padding-left: 10px;
+}
+
+.stock-comment {
+    font-size: 11px;
+}
+
+.price span {
+    white-space: nowrap;
+}
+
+.btn-add {
+    background-color: #76adaf;
+    transition: all 0.3s ease-in-out;
+    color: white;
+}
+
+.btn-add:hover,
+.btn-add:focus,
+.btn-add:active {
+    background-color: #619092;
+    border-color: #76adaf;
+}
+
+.btn-add:focus {
+    transform: scale(1.1);
+}
+
+i.price-down {
+    transform: rotate(180deg);
+    transition: all 0.4s ease-in;
+}
+
+i.price-up {
+    transform: rotate(360deg);
+    transition: all 0.4s ease-in;
+}
+
+i.fa-arrow-up {
+    margin-right: 10px;
+}
