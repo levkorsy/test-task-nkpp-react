@@ -47,10 +47,9 @@ function App() {
         setCartItems({})
     }
     const removeFromCart = (id) => {
-        console.log('removeFromCart', cartItems[id].amount)
         if (cartItems.hasOwnProperty(id)) { // Checks if item is in the cart adn updates amount
             let amt = cartItems[id]['amount'];
-            console.log('yes', amt)      // If item amount bigger than 1 subtracts 1
+            // If item amount bigger than 1 subtracts 1
             if (amt > 1) {
                 setCartItems(prevState => ({
                     ...prevState,
@@ -58,7 +57,6 @@ function App() {
                 }));
             } else {
                 // If item amount smaller than 1 deletes item
-                console.log('no', 3)
                 delete cartItems[id]
                 setCartItems(Object.assign({}, cartItems));
                 // setCartItems(cartItems);
@@ -69,6 +67,9 @@ function App() {
 
         }
 
+    }
+    const getDollarRate = (min, max) => {
+        return Math.floor(Math.random() * (max - min + 1)) + min
     }
     useEffect(() => {
 
@@ -90,14 +91,6 @@ function App() {
             })
             return tempItemStock
         }
-        const getDollarRate = (min, max) => {
-            let tempPrev = dollarRate.current
-            setDollarRate({
-                previous: tempPrev,
-                current: Math.floor(Math.random() * (max - min + 1)) + min
-            })
-        }
-
 
         const fetchData = async () => {
             const stock = await sortItemsByGroup(data.Value.Goods, names) // Separates items due the categories
@@ -105,9 +98,13 @@ function App() {
         };
         fetchData();
         setInterval(() => {
-            getDollarRate(20, 80)
+            setDollarRate(prevState => ({
+                ...prevState,
+                previous: prevState.current,
+                current: getDollarRate(20, 80)
+            }));
             fetchData();
-        }, 5000)
+        }, 3000)
 
     }, []);
 

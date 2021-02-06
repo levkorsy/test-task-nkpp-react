@@ -1,6 +1,12 @@
 import React from 'react'
 
 export const CartItem = (props) =>{
+
+    const up = props.dollarRate.current > props.dollarRate.previous ? 'price-up' : ''
+    const down = props.dollarRate.current < props.dollarRate.previous ? 'price-down' : ''
+    const equally = props.dollarRate.current === props.dollarRate.previous ? 'equally' : ''
+    const priceClass = `cart-item-price ${up} ${down} ${equally}`
+
     return(
         <tr className="animate-tr">
             <td className="cart-item-title">{ props.cartItem.title }
@@ -8,10 +14,10 @@ export const CartItem = (props) =>{
             </td>
             <td className="cart-item-amount">{ props.cartItem.amount }
             </td>
-            <td className="cart-item-price">
+            <td className={priceClass}>
             {(props.cartItem.price * props.dollarRate.current).toFixed(2) } &#8381;
         </td>
-    <td className="cart-item-price">
+    <td className={priceClass}>
 {(props.cartItem.price * props.cartItem.amount * props.dollarRate.current).toFixed(2) } &#8381;
 </td>
     <td className="cart-item-remove">

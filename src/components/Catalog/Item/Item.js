@@ -3,22 +3,30 @@ import PropTypes from 'prop-types'
 import './Item.css'
 
  const Item = (props) => {
-
+     // console.log(props.dollarRate)
     function getComment(value) {
         return value < 1 ? 'Товара нет в наличии' : value < 10 ? 'товар заканчивается' : 'в наличии';
     }
-   // function addToCart() {
-        // this.item.P -= 1;
-        // EventBus.$emit('add_item',
-       // {
-       //      id: this.item.T,
-       //      group: this.item.G,
-       //      title: this.item.title.N,
-       //      price: this.item.C,
-       //      quantity: this.item.P
-       //  }
-       // )
-    // }
+     const up = props.dollarRate.current > props.dollarRate.previous ? 'price-up' : ''
+     const down = props.dollarRate.current < props.dollarRate.previous ? 'price-down' : ''
+     const equally = props.dollarRate.current === props.dollarRate.previous ? 'equally' : ''
+     const priceClass = `price ${up} ${down} ${equally}`
+
+     const arrowUp = props.dollarRate.current > props.dollarRate.previous ? 'fa-arrow-up' : ''
+     const arrowDown = props.dollarRate.current < props.dollarRate.previous ? 'fa-arrow-down' : ''
+     // const arrowEqually = props.dollarRate.current === props.dollarRate.previous ? 'equally' : ''
+     const arrowClass = `fas ${arrowUp} ${arrowDown}`
+
+
+
+     // let priceClass =
+     //     classNames(
+     //         {
+     //     'price': true,
+     //     'price-up': props.dollarRate.current > props.dollarRate.previous,
+     //     'price-down': props.dollarRate.current < props.dollarRate.previous
+     // }
+     // );
 
     return (
         <div className="item-wrapper">
@@ -32,10 +40,10 @@ import './Item.css'
           getComment(props.item.P)
       }</span></span>
             </div>
-            <div className="price"
+            <div className={priceClass}
 //            :class="setClassByDollarRate(dollarRate)"
         >
-            <span><i className="fas fa-arrow-up"
+            <span><i className={arrowClass}
 //                :class="setClassByDollarRate(dollarRate)"
             ></i>{ (props.item.C * props.dollarRate.current).toFixed(2) } &#8381;</span>
 </div>
