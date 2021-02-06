@@ -1,28 +1,43 @@
 import React from 'react'
 
-export const CartItem = () =>{
+export const CartItem = (props) =>{
     return(
-        <div className="main-catalog-wrapper">mk</div>
-    )
+        <tr className="animate-tr">
+            <td className="cart-item-title">{ props.cartItem.title }
+                <div className="amount-msg" v-if="cartItem.quantity<10">Товар заканчивается</div>
+            </td>
+            <td className="cart-item-amount">{ props.cartItem.amount }
+            </td>
+            <td className="cart-item-price">
+            {(props.cartItem.price * props.dollarRate.current).toFixed(2) } &#8381;
+        </td>
+    <td className="cart-item-price">
+{(props.cartItem.price * props.cartItem.amount * props.dollarRate.current).toFixed(2) } &#8381;
+</td>
+    <td className="cart-item-remove">
+        <button className="btn btn-danger" onClick={()=>{props.removeFromCart(props.cartItem.id)}} title="Удалить товар"><i className="far fa-trash-alt"/>
+    </button>
+</td>
+</tr>    )
 }
 
 
 
-// <tr class="animate-tr">
-//     <td class="cart-item-title">{{ cartItem.title }}
-//         <div class="amount-msg" v-if="cartItem.quantity<10">Товар заканчивается</div>
+// <tr className="animate-tr">
+//     <td className="cart-item-title">{{ cartItem.title }}
+//         <div className="amount-msg" v-if="cartItem.quantity<10">Товар заканчивается</div>
 //     </td>
-//     <td class="cart-item-amount">{{ cartItem.amount }}
+//     <td className="cart-item-amount">{{ cartItem.amount }}
 //
 //     </td>
-//     <td class="cart-item-price" :class="setClassByDollarRate(dollarRate)">
+//     <td className="cart-item-price" :className="setClassByDollarRate(dollarRate)">
 //     {{ (cartItem.price * dollarRate.current).toFixed(2) }} &#8381;
 // </td>
-// <td class="cart-item-price" :class="setClassByDollarRate(dollarRate)">
+// <td className="cart-item-price" :className="setClassByDollarRate(dollarRate)">
 // {{ (cartItem.price * cartItem.amount * dollarRate.current).toFixed(2) }} &#8381;
 // </td>
-// <td class="cart-item-remove">
-//     <button class="btn btn-danger" @click="removeFromCart" title="Удалить товар"><i class="far fa-trash-alt"></i>
+// <td className="cart-item-remove">
+//     <button className="btn btn-danger" @click="removeFromCart" title="Удалить товар"><i className="far fa-trash-alt"></i>
 // </button>
 // </td>
 // </tr>
