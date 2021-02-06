@@ -1,5 +1,5 @@
 import React from 'react'
-
+import './CartItem.css'
 export const CartItem = (props) =>{
 
     const up = props.dollarRate.current > props.dollarRate.previous ? 'price-up' : ''

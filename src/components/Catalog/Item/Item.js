@@ -14,8 +14,10 @@ import './Item.css'
 
      const arrowUp = props.dollarRate.current > props.dollarRate.previous ? 'fa-arrow-up' : ''
      const arrowDown = props.dollarRate.current < props.dollarRate.previous ? 'fa-arrow-down' : ''
-     // const arrowEqually = props.dollarRate.current === props.dollarRate.previous ? 'equally' : ''
      const arrowClass = `fas ${arrowUp} ${arrowDown}`
+
+     const btnDisabled = props.item.P === 0 ? 'disabled' : ''
+     const btnClass = `btn btn-add ${btnDisabled}`
 
 
 
@@ -41,14 +43,12 @@ import './Item.css'
       }</span></span>
             </div>
             <div className={priceClass}
-//            :class="setClassByDollarRate(dollarRate)"
         >
-            <span><i className={arrowClass}
-//                :class="setClassByDollarRate(dollarRate)"
-            ></i>{ (props.item.C * props.dollarRate.current).toFixed(2) } &#8381;</span>
+            <span><i className={arrowClass}/>
+            { (props.item.C * props.dollarRate.current).toFixed(2) } &#8381;</span>
 </div>
             <div className="add-item">
-                <button className="btn btn-add" onClick={()=> props.addToCart({
+                <button className={btnClass} onClick={()=> props.addToCart({
                     id: props.item.T,
                     group: props.item.G,
                     title: props.item.title.N,

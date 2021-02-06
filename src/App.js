@@ -10,17 +10,16 @@ function App() {
     const [cartItems, setCartItems] = useState({})
     const [dollarRate, setDollarRate] = useState({previous: 45, current: 45})
     const updateItemStock = (id, value) => {
-        itemStock.map(group => {
-            group.map(item => {
-                if (item.T === id && item.P > 0) {
+        itemStock.forEach(group => {
+            group.forEach(item => {
+                // if (item.T === id && item.P > 0) {
+                if (item.T === id ) {
+                    console.log(item)
                     item.P += value
                 }
             })
         })
-        // setItemStock(prevState => ({
-        //     ...prevState,
-        //     tempStock
-        // }));
+        setItemStock(itemStock);
 
     }
     const addItemToCart = (item) => {
@@ -44,11 +43,16 @@ function App() {
         }
     }
     const resetCart = () => {
+        Object.keys(cartItems).forEach((cartItem, index) => {
+            console.log(cartItems[cartItem].id, cartItems[cartItem].amount)
+            updateItemStock(cartItems[cartItem].id, cartItems[cartItem].amount)
+        })
         setCartItems({})
     }
     const removeFromCart = (id) => {
         if (cartItems.hasOwnProperty(id)) { // Checks if item is in the cart adn updates amount
             let amt = cartItems[id]['amount'];
+            console.log(id, amt, "amount")
             // If item amount bigger than 1 subtracts 1
             if (amt > 1) {
                 setCartItems(prevState => ({
@@ -104,7 +108,7 @@ function App() {
                 current: getDollarRate(20, 80)
             }));
             fetchData();
-        }, 3000)
+        }, 15000)
 
     }, []);
 
