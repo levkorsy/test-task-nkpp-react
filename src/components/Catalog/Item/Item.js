@@ -1,24 +1,27 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import PropTypes from 'prop-types'
 import './Item.css'
+import Context from "../../../context";
 
- const Item = (props) => {
-     // console.log(props.dollarRate)
+const Item = (props) => {
+    //Initiating context
+    const {addItemToCart, dollarRate} = useContext(Context)
+
+    // Function returns comment (string), due to the item quantity in stick. Gets number.
     function getComment(value) {
         return value < 1 ? 'Товара нет в наличии' : value < 10 ? 'товар заканчивается' : 'в наличии';
     }
-     const up = props.dollarRate.current > props.dollarRate.previous ? 'price-up' : ''
-     const down = props.dollarRate.current < props.dollarRate.previous ? 'price-down' : ''
-     const equally = props.dollarRate.current === props.dollarRate.previous ? 'equally' : ''
-     const priceClass = `price ${up} ${down} ${equally}`
 
-     const arrowUp = props.dollarRate.current > props.dollarRate.previous ? 'fa-arrow-up' : ''
-     const arrowDown = props.dollarRate.current < props.dollarRate.previous ? 'fa-arrow-down' : ''
-     const arrowClass = `fas ${arrowUp} ${arrowDown}`
-
-     const btnDisabled = props.item.P === 0 ? 'disabled' : ''
-     const btnClass = `btn btn-add ${btnDisabled}`
-
+    //Styles. Dynamic classes
+    const up = dollarRate.current > dollarRate.previous ? 'price-up' : ''
+    const down = dollarRate.current < dollarRate.previous ? 'price-down' : ''
+    const equally = dollarRate.current === dollarRate.previous ? 'equally' : ''
+    const priceClass = `price ${up} ${down} ${equally}`
+    const arrowUp = dollarRate.current > dollarRate.previous ? 'fa-arrow-up' : ''
+    const arrowDown = dollarRate.current < dollarRate.previous ? 'fa-arrow-down' : ''
+    const arrowClass = `fas ${arrowUp} ${arrowDown}`
+    const btnDisabled = props.item.P === 0 ? 'disabled' : ''
+    const btnClass = `btn btn-add ${btnDisabled}`
 
     return (
         <div className="item-wrapper">
@@ -33,12 +36,12 @@ import './Item.css'
       }</span></span>
             </div>
             <div className={priceClass}
-        >
+            >
             <span><i className={arrowClass}/>
-            { (props.item.C * props.dollarRate.current).toFixed(2) } &#8381;</span>
-</div>
+                {(props.item.C * dollarRate.current).toFixed(2)} &#8381;</span>
+            </div>
             <div className="add-item">
-                <button className={btnClass} onClick={()=> props.addToCart({
+                <button className={btnClass} onClick={() => addItemToCart({
                     id: props.item.T,
                     group: props.item.G,
                     title: props.item.title.N,
@@ -47,42 +50,15 @@ import './Item.css'
                     amount: 1
                 })
                 } title="Добавить в корзину">
-                <i className="fas fa-cart-plus"/>
-            </button>
-        </div>
+                    <i className="fas fa-cart-plus"/>
+                </button>
+            </div>
         </div>
     )
 }
 
 Item.propTypes = {
-    dollarRate: PropTypes.object.isRequired,
     item: PropTypes.object.isRequired,
-    addToChart: PropTypes.func.isRequired
 }
 
-export  default Item
-
-// <div class="item-wrapper">
-//     <div class="title">
-//         <p class="item-title">
-//             {{ item.title.N }}
-//         </p>
-//     </div>
-//     <div class="stock">
-//       <span><span v-if="item.P > 0">({{ item.P }})</span> <span class="stock-comment">{{
-//           getComment(item.P)
-//       }}</span></span>
-//     </div>
-//     <div class="price"
-//     :class="setClassByDollarRate(dollarRate)"
-// >
-//             <span><i class="fas fa-arrow-up"
-//                 :class="setClassByDollarRate(dollarRate)"
-//             ></i>{{ (item.C * dollarRate.current).toFixed(2) }} &#8381;</span>
-// </div>
-// <div class="add-item">
-//     <button class="btn btn-add" @click="addToCart" :disabled="item.P < 1" title="Добавить в корзину">
-//     <i class="fas fa-cart-plus"></i>
-// </button>
-// </div>
-// </div>
+export default Item

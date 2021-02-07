@@ -3,14 +3,17 @@ import './CartItem.css'
 
 const CartItem = (props) => {
 
+    //Styles. Dynamic classes
     const up = props.dollarRate.current > props.dollarRate.previous ? 'price-up' : ''
     const down = props.dollarRate.current < props.dollarRate.previous ? 'price-down' : ''
     const equally = props.dollarRate.current === props.dollarRate.previous ? 'equally' : ''
     const priceClass = `cart-item-price ${up} ${down} ${equally}`
 
+    // Function returns comment (string), due to the item quantity in stick. Gets number.
     function getComment(value) {
         return value < 10 ? 'Товара заканчивается' : 'Товар в наличии';
     }
+
     return (
         <tr className="animate-tr">
             <td className="cart-item-title">{props.cartItem.title}
