@@ -20,16 +20,6 @@ import './Item.css'
      const btnClass = `btn btn-add ${btnDisabled}`
 
 
-
-     // let priceClass =
-     //     classNames(
-     //         {
-     //     'price': true,
-     //     'price-up': props.dollarRate.current > props.dollarRate.previous,
-     //     'price-down': props.dollarRate.current < props.dollarRate.previous
-     // }
-     // );
-
     return (
         <div className="item-wrapper">
             <div className="title">

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import './Cart.scss'
-import {CartItem} from "../CartItem/CartItem";
+import CartItem from "../CartItem/CartItem";
 
 
 const Cart = (props) => {
@@ -14,8 +14,6 @@ const Cart = (props) => {
         }
         return (sum * props.dollarRate.current).toFixed(2)
     }
-
-
     return (
         <div className='main-catalog-wrapper' style={{boxShadow: "rgb(0 0 0 / 24%) 0px 3px 8px"}}>
             <h5 className="item-group-title">Корзина</h5>
